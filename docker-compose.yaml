@@ -18,6 +18,6 @@ services:
   openrgb:
     build: .
     restart: "always"
-    priveleged: true
+    privileged: true
     ports:
       - "6742:6742"
