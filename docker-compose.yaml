@@ -16,8 +16,8 @@ services:
         condition: service_started
 
   openrgb:
-    build:
-      context: .
-      dockerfile: DockerFile
+    build: .
+    restart: "always"
+    priveleged: true
     ports:
       - "6742:6742"

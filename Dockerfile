@@ -6,4 +6,4 @@ RUN curl -L https://gitlab.com/CalcProgrammer1/OpenRGB/-/jobs/artifacts/master/d
 RUN unzip openrgb.zip
 RUN apt --fix-broken install -y ./*.deb
 EXPOSE 6742
-ENTRYPOINT ["openrgb", "--server", "-vv"]
+ENTRYPOINT ["openrgb", "--server"]
