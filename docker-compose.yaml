@@ -1,23 +1,19 @@
 version: '2'
 services:
-  homebridge:
-    image: homebridge/homebridge:latest
-    restart: always
-    network_mode: host
+  homeassistant:
+    container_name: homeassistant
+    image: "ghcr.io/home-assistant/home-assistant:stable"
     volumes:
-      - ./volumes/homebridge:/homebridge
-    logging:
-      driver: json-file
-      options:
-        max-size: "10mb"
-        max-file: "1"
-    depends_on:
-      openrgb:
-        condition: service_started
+      - ~/.config/homeassistant:/config
+      - /etc/localtime:/etc/localtime:ro
+      - /run/dbus:/run/dbus:ro
+    restart: unless-stopped
+    privileged: true
+    network_mode: host
 
   openrgb:
     build: .
-    restart: "always"
+    restart: unless-stopped
     privileged: true
     ports:
       - "6742:6742"
